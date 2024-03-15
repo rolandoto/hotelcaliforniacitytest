@@ -1,0 +1,33 @@
+.banner {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  top: -140px;
+  margin-left: 356px;
+}
+
+.banner-div {
+  width: 46%;
+}
+
+.banner div {
+  width: 100%;
+}
+
+/* Estilo para la clase formNiños */
+.formNinos {
+  /* Agrega aquí tus estilos personalizados para el contenedor */
+}
+
+/* Oculta el div con la etiqueta "children" dentro de formNiños */
+.formNiños #select_id option[data-display="children"] {
+  display: none;
+}
+
+/* Muestra la palabra "niños" en su lugar dentro de formNiños */
+.formNiños #select_id option[value="Niños"] {
+  display: block;
+}
+
+/* Agrega más estilos según sea necesario */
