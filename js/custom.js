@@ -132,6 +132,7 @@
 
     // Click de Reserva
     $("#reservaLink").on("click", function () {
+   
       const requestData = {
         email: $("#email").val(),
         phone: $("#phone").val(),
@@ -332,15 +333,15 @@
         $(this).parent().wrapAll('<div class="video-wrapper">');
         $(PlaceV).html(
           '<iframe frameborder="0" height="333" src="' +
-            videoLink +
-            '?autoplay=1&showinfo=0" title="YouTube video player" width="547"></iframe>'
+          videoLink +
+          '?autoplay=1&showinfo=0" title="YouTube video player" width="547"></iframe>'
         );
       } else {
         $(this).parent().wrapAll('<div class="video-wrapper">');
         $(PlaceV).html(
           '<iframe src="' +
-            videoLink +
-            '?title=0&amp;byline=0&amp;portrait=0&amp;autoplay=1&amp;color=6dc234" width="500" height="281" frameborder="0"></iframe>'
+          videoLink +
+          '?title=0&amp;byline=0&amp;portrait=0&amp;autoplay=1&amp;color=6dc234" width="500" height="281" frameborder="0"></iframe>'
         );
       }
     });
@@ -401,8 +402,8 @@
         // Analiza los datos y colócalos en los elementos correspondientes
 
         var datos = JSON.parse(datosJSON);
-        document.getElementById("start-date-1").value =  `${datos.startDate} Fecha inicio` ;
-        document.getElementById("end-date-1").value =  `${datos.endDate}  Fecha Final` ;;
+        document.getElementById("start-date-1").value = `${datos.startDate} Fecha inicio`;
+        document.getElementById("end-date-1").value = `${datos.endDate}  Fecha Final`;;
 
         $("#select_id").on("change", function () {
           var datosLocal = {
@@ -428,37 +429,36 @@
 
         console.log(byidChildren);
 
-        $("#id-room-detail").click(function () {});
+        $("#id-room-detail").click(function () { });
 
         $(document).ready(function () {
-          var select = $('<select class ="nice-select" >')
-            .attr("id", "hall")
-            .addClass("wide");
+          // Creamos un nuevo elemento div con la clase nice-select wide
+          var nuevoSelect = $('<div class="nice-select wide" tabindex="0"></div>');
 
-          // Agregamos la opción por defecto
-          select.append(
-            $("<option>").attr("data-display", "adults").text("adults")
-          );
+          // Agregamos el contenido del select existente
+          nuevoSelect.append(`
+              <span class="current">Adultos</span>
+              <ul class="list">
+                  <li data-value="Adultos" class="option selected">Adultos</li>
+                  <li data-value="1" class="option">1</li>
+                  <li data-value="2" class="option">2</li>
+                  <li data-value="3" class="option">3</li>
+                  <li data-value="4" class="option">4</li>
+                  <li data-value="5" class="option">5</li>
+              </ul>
+          `);
 
-          // Agregamos las opciones del 1 al 5
-          for (var i = 1; i <= 5; i++) {
-            select.append($("<option>").val(`${i} Aultos`).text(`${i} Aultos`));
-          }
+          // Seleccionamos el valor específico
+          var valorSeleccionado = datos.quantity + " Adultos"; // Suponiendo que "datos.quantity" contiene el valor deseado
+          nuevoSelect.find('.current').text(valorSeleccionado); // Actualizamos el texto de la opción actual
+          nuevoSelect.find('.selected').removeClass('selected'); // Removemos la clase 'selected' del elemento actualmente seleccionado
+          nuevoSelect.find(`[data-value="${valorSeleccionado}"]`).addClass('selected'); // Agregamos la clase 'selected' al elemento con el valor seleccionado
 
-          // Agregamos el select al elemento con ID 'container'
-          $("#container").append(select);
-
-          // Seleccionamos el valor "4"
-          select.val(`${datos.quantity} Aultos`);
-
-          // Añadimos un evento para manejar el cambio de selección
-          select.on("change", function () {
-            var selectedValue = $(this).val();
-            console.log("El valor seleccionado es: " + selectedValue);
-          });
+          // Agregamos el nuevo select al elemento con ID 'container-childrem'
+          $("#container").append(nuevoSelect);
         });
 
-        // Limpia los datos almacenados en localStorage
+        // Limpia los datos almacenados en localStorageF
         // localStorage.removeItem("datos");
       } else {
         console.log("No se encontraron datos en localStorage.");
@@ -470,8 +470,8 @@
       if (datosJSON) {
         // Analiza los datos y colócalos en los elementos correspondientes
         var datos = JSON.parse(datosJSON);
-        document.getElementById("start-date-1").value =  `${datos.startDate} Fecha inicio` ;
-        document.getElementById("end-date-1").value =  `${datos.endDate}  Fecha Final` ;;
+        document.getElementById("start-date-1").value = `${datos.startDate} Fecha inicio`;
+        document.getElementById("end-date-1").value = `${datos.endDate}  Fecha Final`;;
 
         $(document).ready(function () {
           var select = $('<select class ="nice-select" >')
@@ -515,67 +515,64 @@
       if (datosJSON) {
         // Analiza los datos y colócalos en los elementos correspondientes
         var datos = JSON.parse(datosJSON);
-        document.getElementById("start-date-1").value =  `${datos.startDate} Fecha inicio` ;
-        document.getElementById("end-date-1").value =  `${datos.endDate}  Fecha Final` ;;
+        document.getElementById("start-date-1").value = `${datos.startDate} Fecha inicio`;
+        document.getElementById("end-date-1").value = `${datos.endDate}  Fecha Final`;;
+
+
 
         $(document).ready(function () {
-          var select = $('<select class ="nice-select" >')
-            .attr("id", "hall")
-            .addClass("wide");
+          // Creamos un nuevo elemento div con la clase nice-select wide
+          var nuevoSelect = $('<div class="nice-select wide" tabindex="0"></div>');
 
-          // Agregamos la opción por defecto
-          select.append(
-            $('<option class="option" >')
-              .attr("data-display", "adults")
-              .text("adults")
-          );
+          // Agregamos el contenido del select existente
+          nuevoSelect.append(`
+              <span class="current">Adultos</span>
+              <ul class="list">
+                  <li data-value="Adultos" class="option selected">Adultos</li>
+                  <li data-value="1" class="option">1</li>
+                  <li data-value="2" class="option">2</li>
+                  <li data-value="3" class="option">3</li>
+                  <li data-value="4" class="option">4</li>
+                  <li data-value="5" class="option">5</li>
+              </ul>
+          `);
 
-          // Agregamos las opciones del 1 al 5
-          for (var i = 1; i <= 5; i++) {
-            select.append($("<option>").val(`${i} Aultos`).text(`${i} Aultos`));
-          }
+          // Seleccionamos el valor específico
+          var valorSeleccionado = datos.quantity + " Adultos"; // Suponiendo que "datos.quantity" contiene el valor deseado
+          nuevoSelect.find('.current').text(valorSeleccionado); // Actualizamos el texto de la opción actual
+          nuevoSelect.find('.selected').removeClass('selected'); // Removemos la clase 'selected' del elemento actualmente seleccionado
+          nuevoSelect.find(`[data-value="${valorSeleccionado}"]`).addClass('selected'); // Agregamos la clase 'selected' al elemento con el valor seleccionado
 
-          // Agregamos el select al elemento con ID 'container'
-          $("#container").append(select);
-
-          // Seleccionamos el valor "4"
-          select.val(`${datos.quantity} Aultos`);
-
-          // Añadimos un evento para manejar el cambio de selección
-          select.on("change", function () {
-            var selectedValue = $(this).val();
-            console.log("El valor seleccionado es: " + selectedValue);
-          });
+          // Agregamos el nuevo select al elemento con ID 'container-childrem'
+          $("#container").append(nuevoSelect);
         });
 
+
         $(document).ready(function () {
-          var select = $('<select class ="nice-select" >')
-            .attr("id", "hall")
-            .addClass("wide");
+          // Creamos un nuevo elemento div con la clase nice-select wide
+          var nuevoSelect = $('<div class="nice-select wide" tabindex="0"></div>');
 
-          // Agregamos la opción por defecto
-          select.append(
-            $('<option class="option" >')
-              .attr("data-display", "Niños")
-              .text("Niños")
-          );
+          // Agregamos el contenido del select existente
+          nuevoSelect.append(`
+              <span class="current">Niños</span>
+              <ul class="list">
+                  <li data-value="Niños" class="option selected">Niños</li>
+                  <li data-value="1" class="option">1</li>
+                  <li data-value="2" class="option">2</li>
+                  <li data-value="3" class="option">3</li>
+                  <li data-value="4" class="option">4</li>
+                  <li data-value="5" class="option">5</li>
+              </ul>
+          `);
 
-          // Agregamos las opciones del 1 al 5
-          for (var i = 1; i <= 5; i++) {
-            select.append($("<option>").val(`${i} Niños`).text(`${i} Niños`));
-          }
+          // Seleccionamos el valor específico
+          var valorSeleccionado = datos.children + " Niños"; // Suponiendo que "datos.quantity" contiene el valor deseado
+          nuevoSelect.find('.current').text(valorSeleccionado); // Actualizamos el texto de la opción actual
+          nuevoSelect.find('.selected').removeClass('selected'); // Removemos la clase 'selected' del elemento actualmente seleccionado
+          nuevoSelect.find(`[data-value="${valorSeleccionado}"]`).addClass('selected'); // Agregamos la clase 'selected' al elemento con el valor seleccionado
 
-          // Agregamos el select al elemento con ID 'container'
-          $("#container-childrem").append(select);
-
-          // Seleccionamos el valor "4"
-          select.val(`${datos.quantity} Niños`);
-
-          // Añadimos un evento para manejar el cambio de selección
-          select.on("change", function () {
-            var selectedValue = $(this).val();
-            console.log("El valor seleccionado es: " + selectedValue);
-          });
+          // Agregamos el nuevo select al elemento con ID 'container-childrem'
+          $("#container-childrem").append(nuevoSelect);
         });
 
         // Limpia los datos almacenados en localStorage
@@ -590,69 +587,62 @@
       if (datosJSON) {
         // Analiza los datos y colócalos en los elementos correspondientes
         var datos = JSON.parse(datosJSON);
-        document.getElementById("start-date-1").value =  `${datos.startDate} Fecha inicio` ;
-        document.getElementById("end-date-1").value =  `${datos.endDate}  Fecha Final` ;;
-
+        document.getElementById("start-date-1").value = `${datos.startDate} Fecha inicio`;
+        document.getElementById("end-date-1").value = `${datos.endDate}  Fecha Final`;;
 
         $(document).ready(function () {
-          var select = $('<select class ="nice-select" >')
-            .attr("id", "hall")
-            .addClass("wide");
+          // Creamos un nuevo elemento div con la clase nice-select wide
+          var nuevoSelect = $('<div class="nice-select wide" tabindex="0"></div>');
 
-          // Agregamos la opción por defecto
-          select.append(
-            $('<option class="option" >')
-              .attr("data-display", "adults")
-              .text("adults")
-          );
+          // Agregamos el contenido del select existente
+          nuevoSelect.append(`
+              <span class="current">Adultos</span>
+              <ul class="list">
+                  <li data-value="Adultos" class="option selected">Adultos</li>
+                  <li data-value="1" class="option">1</li>
+                  <li data-value="2" class="option">2</li>
+                  <li data-value="3" class="option">3</li>
+                  <li data-value="4" class="option">4</li>
+                  <li data-value="5" class="option">5</li>
+              </ul>
+          `);
 
-          // Agregamos las opciones del 1 al 5
-          // Agregamos las opciones del 1 al 5
-          for (var i = 1; i <= 5; i++) {
-            select.append($("<option>").val(`${i} Aultos`).text(`${i} Aultos`));
-          }
+          // Seleccionamos el valor específico
+          var valorSeleccionado = datos.quantity + " Adultos"; // Suponiendo que "datos.quantity" contiene el valor deseado
+          nuevoSelect.find('.current').text(valorSeleccionado); // Actualizamos el texto de la opción actual
+          nuevoSelect.find('.selected').removeClass('selected'); // Removemos la clase 'selected' del elemento actualmente seleccionado
+          nuevoSelect.find(`[data-value="${valorSeleccionado}"]`).addClass('selected'); // Agregamos la clase 'selected' al elemento con el valor seleccionado
 
-          // Agregamos el select al elemento con ID 'container'
-          $("#container").append(select);
-
-          // Seleccionamos el valor "4"
-          select.val(`${datos.quantity} Aultos`);
-
-          // Añadimos un evento para manejar el cambio de selección
-          select.on("change", function () {
-            var selectedValue = $(this).val();
-            console.log("El valor seleccionado es: " + selectedValue);
-          });
+          // Agregamos el nuevo select al elemento con ID 'container-childrem'
+          $("#container").append(nuevoSelect);
         });
 
+
         $(document).ready(function () {
-          var select = $('<select class ="nice-select" >')
-            .attr("id", "hall")
-            .addClass("wide");
+          // Creamos un nuevo elemento div con la clase nice-select wide
+          var nuevoSelect = $('<div class="nice-select wide" tabindex="0"></div>');
 
-          // Agregamos la opción por defecto
-          select.append(
-            $('<option class="option" >')
-              .attr("data-display", "Niños")
-              .text("Niños")
-          );
+          // Agregamos el contenido del select existente
+          nuevoSelect.append(`
+              <span class="current">Niños</span>
+              <ul class="list">
+                  <li data-value="Niños" class="option selected">Niños</li>
+                  <li data-value="1" class="option">1</li>
+                  <li data-value="2" class="option">2</li>
+                  <li data-value="3" class="option">3</li>
+                  <li data-value="4" class="option">4</li>
+                  <li data-value="5" class="option">5</li>
+              </ul>
+          `);
 
-          // Agregamos las opciones del 1 al 5
-          for (var i = 1; i <= 5; i++) {
-            select.append($("<option>").val(`${i} Niños`).text(`${i} Niños`));
-          }
+          // Seleccionamos el valor específico
+          var valorSeleccionado = datos.children + " Niños"; // Suponiendo que "datos.quantity" contiene el valor deseado
+          nuevoSelect.find('.current').text(valorSeleccionado); // Actualizamos el texto de la opción actual
+          nuevoSelect.find('.selected').removeClass('selected'); // Removemos la clase 'selected' del elemento actualmente seleccionado
+          nuevoSelect.find(`[data-value="${valorSeleccionado}"]`).addClass('selected'); // Agregamos la clase 'selected' al elemento con el valor seleccionado
 
-          // Agregamos el select al elemento con ID 'container'
-          $("#container-childrem").append(select);
-
-          // Seleccionamos el valor "4"
-          select.val(`${datos.quantity} Niños`);
-
-          // Añadimos un evento para manejar el cambio de selección
-          select.on("change", function () {
-            var selectedValue = $(this).val();
-            console.log("El valor seleccionado es: " + selectedValue);
-          });
+          // Agregamos el nuevo select al elemento con ID 'container-childrem'
+          $("#container-childrem").append(nuevoSelect);
         });
 
         // Limpia los datos almacenados en localStorage
@@ -667,68 +657,62 @@
       if (datosJSON) {
         // Analiza los datos y colócalos en los elementos correspondientes
         var datos = JSON.parse(datosJSON);
-        document.getElementById("start-date-1").value =  `${datos.startDate} Fecha inicio` ;
-        document.getElementById("end-date-1").value =  `${datos.endDate}  Fecha Final` ;;
+        document.getElementById("start-date-1").value = `${datos.startDate} Fecha inicio`;
+        document.getElementById("end-date-1").value = `${datos.endDate}  Fecha Final`;;
 
         $(document).ready(function () {
-          var select = $('<select class ="nice-select" >')
-            .attr("id", "hall")
-            .addClass("wide");
+          // Creamos un nuevo elemento div con la clase nice-select wide
+          var nuevoSelect = $('<div class="nice-select wide" tabindex="0"></div>');
 
-          // Agregamos la opción por defecto
-          select.append(
-            $('<option class="option" >')
-              .attr("data-display", "adults")
-              .text("adults")
-          );
+          // Agregamos el contenido del select existente
+          nuevoSelect.append(`
+              <span class="current">Adultos</span>
+              <ul class="list">
+                  <li data-value="Adultos" class="option selected">Adultos</li>
+                  <li data-value="1" class="option">1</li>
+                  <li data-value="2" class="option">2</li>
+                  <li data-value="3" class="option">3</li>
+                  <li data-value="4" class="option">4</li>
+                  <li data-value="5" class="option">5</li>
+              </ul>
+          `);
 
-          // Agregamos las opciones del 1 al 5
-           // Agregamos las opciones del 1 al 5
-           for (var i = 1; i <= 5; i++) {
-            select.append($("<option>").val(`${i} Aultos`).text(`${i} Aultos`));
-          }
+          // Seleccionamos el valor específico
+          var valorSeleccionado = datos.quantity + " Adultos"; // Suponiendo que "datos.quantity" contiene el valor deseado
+          nuevoSelect.find('.current').text(valorSeleccionado); // Actualizamos el texto de la opción actual
+          nuevoSelect.find('.selected').removeClass('selected'); // Removemos la clase 'selected' del elemento actualmente seleccionado
+          nuevoSelect.find(`[data-value="${valorSeleccionado}"]`).addClass('selected'); // Agregamos la clase 'selected' al elemento con el valor seleccionado
 
-          // Agregamos el select al elemento con ID 'container'
-          $("#container").append(select);
-
-          // Seleccionamos el valor "4"
-          select.val(`${datos.quantity} Aultos`);
-
-          // Añadimos un evento para manejar el cambio de selección
-          select.on("change", function () {
-            var selectedValue = $(this).val();
-            console.log("El valor seleccionado es: " + selectedValue);
-          });
+          // Agregamos el nuevo select al elemento con ID 'container-childrem'
+          $("#container").append(nuevoSelect);
         });
 
+
         $(document).ready(function () {
-          var select = $('<select class ="nice-select" >')
-            .attr("id", "hall")
-            .addClass("wide");
+          // Creamos un nuevo elemento div con la clase nice-select wide
+          var nuevoSelect = $('<div class="nice-select wide" tabindex="0"></div>');
 
-          // Agregamos la opción por defecto
-          select.append(
-            $('<option class="option" >')
-              .attr("data-display", "Niños")
-              .text("Niños")
-          );
+          // Agregamos el contenido del select existente
+          nuevoSelect.append(`
+              <span class="current">Niños</span>
+              <ul class="list">
+                  <li data-value="Niños" class="option selected">Niños</li>
+                  <li data-value="1" class="option">1</li>
+                  <li data-value="2" class="option">2</li>
+                  <li data-value="3" class="option">3</li>
+                  <li data-value="4" class="option">4</li>
+                  <li data-value="5" class="option">5</li>
+              </ul>
+          `);
 
-          // Agregamos las opciones del 1 al 5
-          for (var i = 1; i <= 5; i++) {
-            select.append($("<option>").val(`${i} Niños`).text(`${i} Niños`));
-          }
+          // Seleccionamos el valor específico
+          var valorSeleccionado = datos.children + " Niños"; // Suponiendo que "datos.quantity" contiene el valor deseado
+          nuevoSelect.find('.current').text(valorSeleccionado); // Actualizamos el texto de la opción actual
+          nuevoSelect.find('.selected').removeClass('selected'); // Removemos la clase 'selected' del elemento actualmente seleccionado
+          nuevoSelect.find(`[data-value="${valorSeleccionado}"]`).addClass('selected'); // Agregamos la clase 'selected' al elemento con el valor seleccionado
 
-          // Agregamos el select al elemento con ID 'container'
-          $("#container-childrem").append(select);
-
-          // Seleccionamos el valor "4"
-          select.val(`${datos.quantity} Niños`);
-
-          // Añadimos un evento para manejar el cambio de selección
-          select.on("change", function () {
-            var selectedValue = $(this).val();
-            console.log("El valor seleccionado es: " + selectedValue);
-          });
+          // Agregamos el nuevo select al elemento con ID 'container-childrem'
+          $("#container-childrem").append(nuevoSelect);
         });
 
         // Limpia los datos almacenados en localStorage
@@ -743,70 +727,63 @@
       if (datosJSON) {
         // Analiza los datos y colócalos en los elementos correspondientes
         var datos = JSON.parse(datosJSON);
-        document.getElementById("start-date-1").value =  `${datos.startDate} Fecha inicio` ;
-        document.getElementById("end-date-1").value =  `${datos.endDate}  Fecha Final` ;;
+        document.getElementById("start-date-1").value = `${datos.startDate} Fecha inicio`;
+        document.getElementById("end-date-1").value = `${datos.endDate}  Fecha Final`;;
+
+        $(document).ready(function () {
+          // Creamos un nuevo elemento div con la clase nice-select wide
+          var nuevoSelect = $('<div class="nice-select wide" tabindex="0"></div>');
+
+          // Agregamos el contenido del select existente
+          nuevoSelect.append(`
+              <span class="current">Adultos</span>
+              <ul class="list">
+                  <li data-value="Adultos" class="option selected">Adultos</li>
+                  <li data-value="1" class="option">1</li>
+                  <li data-value="2" class="option">2</li>
+                  <li data-value="3" class="option">3</li>
+                  <li data-value="4" class="option">4</li>
+                  <li data-value="5" class="option">5</li>
+              </ul>
+          `);
+
+          // Seleccionamos el valor específico
+          var valorSeleccionado = datos.quantity + " Adultos"; // Suponiendo que "datos.quantity" contiene el valor deseado
+          nuevoSelect.find('.current').text(valorSeleccionado); // Actualizamos el texto de la opción actual
+          nuevoSelect.find('.selected').removeClass('selected'); // Removemos la clase 'selected' del elemento actualmente seleccionado
+          nuevoSelect.find(`[data-value="${valorSeleccionado}"]`).addClass('selected'); // Agregamos la clase 'selected' al elemento con el valor seleccionado
+
+          // Agregamos el nuevo select al elemento con ID 'container-childrem'
+          $("#container").append(nuevoSelect);
+        });
 
 
         $(document).ready(function () {
-          var select = $('<select class ="nice-select" >')
-            .attr("id", "hall")
-            .addClass("wide");
+          // Creamos un nuevo elemento div con la clase nice-select wide
+          var nuevoSelect = $('<div class="nice-select wide" tabindex="0"></div>');
 
-          // Agregamos la opción por defecto
-          select.append(
-            $('<option class="option" >')
-              .attr("data-display", "adults")
-              .text("adults")
-          );
+          // Agregamos el contenido del select existente
+          nuevoSelect.append(`
+              <span class="current">Niños</span>
+              <ul class="list">
+                  <li data-value="Niños" class="option selected">Niños</li>
+                  <li data-value="1" class="option">1</li>
+                  <li data-value="2" class="option">2</li>
+                  <li data-value="3" class="option">3</li>
+                  <li data-value="4" class="option">4</li>
+                  <li data-value="5" class="option">5</li>
+              </ul>
+          `);
 
-           // Agregamos las opciones del 1 al 5
-           for (var i = 1; i <= 5; i++) {
-            select.append($("<option>").val(`${i} Aultos`).text(`${i} Aultos`));
-          }
+          // Seleccionamos el valor específico
+          var valorSeleccionado = datos.children + " Niños"; // Suponiendo que "datos.quantity" contiene el valor deseado
+          nuevoSelect.find('.current').text(valorSeleccionado); // Actualizamos el texto de la opción actual
+          nuevoSelect.find('.selected').removeClass('selected'); // Removemos la clase 'selected' del elemento actualmente seleccionado
+          nuevoSelect.find(`[data-value="${valorSeleccionado}"]`).addClass('selected'); // Agregamos la clase 'selected' al elemento con el valor seleccionado
 
-          // Agregamos el select al elemento con ID 'container'
-          $("#container").append(select);
-
-          // Seleccionamos el valor "4"
-          select.val(`${datos.quantity} Aultos`);
-
-          // Añadimos un evento para manejar el cambio de selección
-          select.on("change", function () {
-            var selectedValue = $(this).val();
-            console.log("El valor seleccionado es: " + selectedValue);
-          });
+          // Agregamos el nuevo select al elemento con ID 'container-childrem'
+          $("#container-childrem").append(nuevoSelect);
         });
-
-        $(document).ready(function () {
-          var select = $('<select class ="nice-select" >')
-            .attr("id", "hall")
-            .addClass("wide");
-
-          // Agregamos la opción por defecto
-          select.append(
-            $('<option class="option" >')
-              .attr("data-display", "Niños")
-              .text("Niños")
-          );
-
-          // Agregamos las opciones del 1 al 5
-          for (var i = 1; i <= 5; i++) {
-            select.append($("<option>").val(`${i} Niños`).text(`${i} Niños`));
-          }
-
-          // Agregamos el select al elemento con ID 'container'
-          $("#container-childrem").append(select);
-
-          // Seleccionamos el valor "4"
-          select.val(`${datos.quantity} Niños`);
-
-          // Añadimos un evento para manejar el cambio de selección
-          select.on("change", function () {
-            var selectedValue = $(this).val();
-            console.log("El valor seleccionado es: " + selectedValue);
-          });
-        });
-
         // Limpia los datos almacenados en localStorage
         // localStorage.removeItem("datos");
       } else {
@@ -819,68 +796,62 @@
       if (datosJSON) {
         // Analiza los datos y colócalos en los elementos correspondientes
         var datos = JSON.parse(datosJSON);
-        document.getElementById("start-date-1").value =  `${datos.startDate} Fecha inicio` ;
-        document.getElementById("end-date-1").value =  `${datos.endDate}  Fecha Final` ;;
-
+        document.getElementById("start-date-1").value = `${datos.startDate} Fecha inicio`;
+        document.getElementById("end-date-1").value = `${datos.endDate}  Fecha Final`;;
 
         $(document).ready(function () {
-          var select = $('<select class ="nice-select" >')
-            .attr("id", "hall")
-            .addClass("wide");
+          // Creamos un nuevo elemento div con la clase nice-select wide
+          var nuevoSelect = $('<div class="nice-select wide" tabindex="0"></div>');
 
-          // Agregamos la opción por defecto
-          select.append(
-            $('<option class="option" >')
-              .attr("data-display", "adults")
-              .text("adults")
-          );
+          // Agregamos el contenido del select existente
+          nuevoSelect.append(`
+              <span class="current">Adultos</span>
+              <ul class="list">
+                  <li data-value="Adultos" class="option selected">Adultos</li>
+                  <li data-value="1" class="option">1</li>
+                  <li data-value="2" class="option">2</li>
+                  <li data-value="3" class="option">3</li>
+                  <li data-value="4" class="option">4</li>
+                  <li data-value="5" class="option">5</li>
+              </ul>
+          `);
 
-          // Agregamos las opciones del 1 al 5
-          for (var i = 1; i <= 5; i++) {
-            select.append($("<option>").val(`${i} Aultos`).text(`${i} Aultos`));
-          }
+          // Seleccionamos el valor específico
+          var valorSeleccionado = datos.quantity + " Adultos"; // Suponiendo que "datos.quantity" contiene el valor deseado
+          nuevoSelect.find('.current').text(valorSeleccionado); // Actualizamos el texto de la opción actual
+          nuevoSelect.find('.selected').removeClass('selected'); // Removemos la clase 'selected' del elemento actualmente seleccionado
+          nuevoSelect.find(`[data-value="${valorSeleccionado}"]`).addClass('selected'); // Agregamos la clase 'selected' al elemento con el valor seleccionado
 
-          // Agregamos el select al elemento con ID 'container'
-          $("#container").append(select);
-
-          // Seleccionamos el valor "4"
-          select.val(`${datos.quantity} Aultos`);
-
-          // Añadimos un evento para manejar el cambio de selección
-          select.on("change", function () {
-            var selectedValue = $(this).val();
-            console.log("El valor seleccionado es: " + selectedValue);
-          });
+          // Agregamos el nuevo select al elemento con ID 'container-childrem'
+          $("#container").append(nuevoSelect);
         });
 
+
         $(document).ready(function () {
-          var select = $('<select class ="nice-select" >')
-            .attr("id", "hall")
-            .addClass("wide");
+          // Creamos un nuevo elemento div con la clase nice-select wide
+          var nuevoSelect = $('<div class="nice-select wide" tabindex="0"></div>');
 
-          // Agregamos la opción por defecto
-          select.append(
-            $('<option class="option" >')
-              .attr("data-display", "Niños")
-              .text("Niños")
-          );
+          // Agregamos el contenido del select existente
+          nuevoSelect.append(`
+              <span class="current">Niños</span>
+              <ul class="list">
+                  <li data-value="Niños" class="option selected">Niños</li>
+                  <li data-value="1" class="option">1</li>
+                  <li data-value="2" class="option">2</li>
+                  <li data-value="3" class="option">3</li>
+                  <li data-value="4" class="option">4</li>
+                  <li data-value="5" class="option">5</li>
+              </ul>
+          `);
 
-          // Agregamos las opciones del 1 al 5
-          for (var i = 1; i <= 5; i++) {
-            select.append($("<option>").val(`${i} Niños`).text(`${i} Niños`));
-          }
+          // Seleccionamos el valor específico
+          var valorSeleccionado = datos.children + " Niños"; // Suponiendo que "datos.quantity" contiene el valor deseado
+          nuevoSelect.find('.current').text(valorSeleccionado); // Actualizamos el texto de la opción actual
+          nuevoSelect.find('.selected').removeClass('selected'); // Removemos la clase 'selected' del elemento actualmente seleccionado
+          nuevoSelect.find(`[data-value="${valorSeleccionado}"]`).addClass('selected'); // Agregamos la clase 'selected' al elemento con el valor seleccionado
 
-          // Agregamos el select al elemento con ID 'container'
-          $("#container-childrem").append(select);
-
-          // Seleccionamos el valor "4"
-          select.val(`${datos.quantity} Niños`);
-
-          // Añadimos un evento para manejar el cambio de selección
-          select.on("change", function () {
-            var selectedValue = $(this).val();
-            console.log("El valor seleccionado es: " + selectedValue);
-          });
+          // Agregamos el nuevo select al elemento con ID 'container-childrem'
+          $("#container-childrem").append(nuevoSelect);
         });
 
         // Limpia los datos almacenados en localStorage
@@ -895,68 +866,63 @@
       if (datosJSON) {
         // Analiza los datos y colócalos en los elementos correspondientes
         var datos = JSON.parse(datosJSON);
-        document.getElementById("start-date-1").value =  `${datos.startDate} Fecha inicio` ;
-        document.getElementById("end-date-1").value =  `${datos.endDate}  Fecha Final` ;;
+        document.getElementById("start-date-1").value = `${datos.startDate} Fecha inicio`;
+        document.getElementById("end-date-1").value = `${datos.endDate}  Fecha Final`;;
 
 
         $(document).ready(function () {
-          var select = $('<select class ="nice-select" >')
-            .attr("id", "hall")
-            .addClass("wide");
+          // Creamos un nuevo elemento div con la clase nice-select wide
+          var nuevoSelect = $('<div class="nice-select wide" tabindex="0"></div>');
 
-          // Agregamos la opción por defecto
-          select.append(
-            $('<option class="option" >')
-              .attr("data-display", "adults")
-              .text("adults")
-          );
+          // Agregamos el contenido del select existente
+          nuevoSelect.append(`
+              <span class="current">Adultos</span>
+              <ul class="list">
+                  <li data-value="Adultos" class="option selected">Adultos</li>
+                  <li data-value="1" class="option">1</li>
+                  <li data-value="2" class="option">2</li>
+                  <li data-value="3" class="option">3</li>
+                  <li data-value="4" class="option">4</li>
+                  <li data-value="5" class="option">5</li>
+              </ul>
+          `);
 
-          // Agregamos las opciones del 1 al 5
-          for (var i = 1; i <= 5; i++) {
-            select.append($("<option>").val(`${i} Aultos`).text(`${i} Aultos`));
-          }
+          // Seleccionamos el valor específico
+          var valorSeleccionado = datos.quantity + " Adultos"; // Suponiendo que "datos.quantity" contiene el valor deseado
+          nuevoSelect.find('.current').text(valorSeleccionado); // Actualizamos el texto de la opción actual
+          nuevoSelect.find('.selected').removeClass('selected'); // Removemos la clase 'selected' del elemento actualmente seleccionado
+          nuevoSelect.find(`[data-value="${valorSeleccionado}"]`).addClass('selected'); // Agregamos la clase 'selected' al elemento con el valor seleccionado
 
-          // Agregamos el select al elemento con ID 'container'
-          $("#container").append(select);
-
-          // Seleccionamos el valor "4"
-          select.val(`${datos.quantity} Aultos`);
-
-          // Añadimos un evento para manejar el cambio de selección
-          select.on("change", function () {
-            var selectedValue = $(this).val();
-            console.log("El valor seleccionado es: " + selectedValue);
-          });
+          // Agregamos el nuevo select al elemento con ID 'container-childrem'
+          $("#container").append(nuevoSelect);
         });
 
+
         $(document).ready(function () {
-          var select = $('<select class ="nice-select" >')
-            .attr("id", "hall")
-            .addClass("wide");
+          // Creamos un nuevo elemento div con la clase nice-select wide
+          var nuevoSelect = $('<div class="nice-select wide" tabindex="0"></div>');
 
-          // Agregamos la opción por defecto
-          select.append(
-            $('<option class="option" >')
-              .attr("data-display", "Niños")
-              .text("Niños")
-          );
+          // Agregamos el contenido del select existente
+          nuevoSelect.append(`
+              <span class="current">Niños</span>
+              <ul class="list">
+                  <li data-value="Niños" class="option selected">Niños</li>
+                  <li data-value="1" class="option">1</li>
+                  <li data-value="2" class="option">2</li>
+                  <li data-value="3" class="option">3</li>
+                  <li data-value="4" class="option">4</li>
+                  <li data-value="5" class="option">5</li>
+              </ul>
+          `);
 
-          // Agregamos las opciones del 1 al 5
-          for (var i = 1; i <= 5; i++) {
-            select.append($("<option>").val(`${i} Niños`).text(`${i} Niños`));
-          }
+          // Seleccionamos el valor específico
+          var valorSeleccionado = datos.children + " Niños"; // Suponiendo que "datos.quantity" contiene el valor deseado
+          nuevoSelect.find('.current').text(valorSeleccionado); // Actualizamos el texto de la opción actual
+          nuevoSelect.find('.selected').removeClass('selected'); // Removemos la clase 'selected' del elemento actualmente seleccionado
+          nuevoSelect.find(`[data-value="${valorSeleccionado}"]`).addClass('selected'); // Agregamos la clase 'selected' al elemento con el valor seleccionado
 
-          // Agregamos el select al elemento con ID 'container'
-          $("#container-childrem").append(select);
-
-          // Seleccionamos el valor "4"
-          select.val(`${datos.quantity} Niños`);
-
-          // Añadimos un evento para manejar el cambio de selección
-          select.on("change", function () {
-            var selectedValue = $(this).val();
-            console.log("El valor seleccionado es: " + selectedValue);
-          });
+          // Agregamos el nuevo select al elemento con ID 'container-childrem'
+          $("#container-childrem").append(nuevoSelect);
         });
 
         // Limpia los datos almacenados en localStorage
